@@ -1,38 +1,57 @@
-print('------ Hello, lets check how is your health? ------ \n\n')
-def BMIcalc():
-    gender = str(input("What's your gender? [F/M]\n"))
-    if gender == 'M' or gender == 'm':
-        weight = int(input("What's your weight?[Kg]: \n"))
-        height = float(input("What's your height?[M]: \n"))
-        imcM = weight / height**2
-        print ('Your Body Mass Index is: ---[', round(imcM,2), ']---')
-        if imcM < 20:
-            print('\nYou are under weight!')
-        elif imcM >= 20 and imcM < 25:
-            print('\nCongratulations, your weight is normal!')
-        elif imcM >= 25 and imcM < 30:
-            print('\nAttention, you are overweight!')
-        elif imcM >= 30 and imcM < 40:
-            print('\n Be careful, you have moderate obesity!')
-        elif imcM >= 43:
-            print('\n Seek help, you have morbid obesity!')
-    elif gender == 'F' or gender == 'f':
-        weight = int(input("What's your weight?[Kg]: \n"))
-        height = float(input("What's your height?[M]: \n"))
-        imcF = weight / height**2
-        print ('Your Body Mass Index is:', round(imcF, 2))
-        if imcF < 19:
-            print('\nYou are under weight!')
-        elif imcF >= 19 and imcF < 24:
-            print('\nCongratulations, your weight is normal!')
-        elif imcF >= 24 and imcF < 29:
-            print('\nAttention, you are overweight!')
-        elif imcF >= 29 and imcF < 39:
-            print('\n Be careful, you have moderate obesity!')
-        elif imcF >= 39:
-            print('\n Seek help, you have morbid obesity!')
-    else:
-        print("Type 'M' for male or 'F' for female \n")
-        BMIcalc()
-BMIcalc()
-input('Press ENTER to finish...')
+import PySimpleGUI as sg
+
+class WindowScreen():
+    def __init__(self):
+        sg.change_look_and_feel('DarkGrey4')
+        # Layout
+        layout = [
+            [sg.Text('\n Name', size=(11,0)), sg.Input(size=(18,0), key='name')],
+            [sg.Text('\nWeight[Kg]', size=(11,0)), sg.Input(size=(18,0), key='weight')],
+            [sg.Text('\nHeight[M]', size=(11,0)), sg.Input(size=(18,0), key='height')],
+            [sg.Text('\n Gender')],
+            [sg.Radio('Male', 'gender', size=(7,0), key='male'), sg.Radio('Female', 'gender', size=(7,0), key='female')],
+            [sg.Button('Calculate')],
+            [sg.Output(size=(32,8))]
+        ]
+        # Window
+        self.window = sg.Window('Calculate Your BMI').layout(layout)
+
+    def Start(self):
+        while True:
+            # Data Extract
+            self.button, self.values = self.window.Read()
+            name = str(self.values['name'])
+            weight = int(self.values['weight'])
+            height = float(self.values['height'])
+            gmale = self.values['male']
+            gfemale = self.values['female']
+            imc = weight / height**2
+
+            if gmale == True:
+                print ('Your Body Mass Index is: ', round(imc,2))
+                if imc < 20:
+                    print('\nAttention', name, 'You are under weight for your height!')
+                elif imc >= 20 and imc < 25:
+                    print('\nCongratulations', name,  'your weight is normal for your height!')
+                elif imc >= 25 and imc < 30:
+                    print('\nAttention', name, 'you are overweight!')
+                elif imc >= 30 and imc < 40:
+                    print('\n Be careful', name, 'you have moderate obesity!')
+                elif imc >= 43:
+                    print('\n Seek help', name, 'you have morbid obesity!')
+
+            if gfemale == True:
+                print ('Your Body Mass Index is: ', round(imc,2))
+                if imc < 19:
+                    print('\nAttention', name, 'You are under weight for your height!')
+                elif imc >= 19 and imc < 24:
+                    print('\nCongratulations', name, 'your weight is normal for your height!')
+                elif imc >= 24 and imc < 29:
+                    print('\nAttention', name, 'you are overweight!')
+                elif imc >= 29 and imc < 39:
+                    print('\n Be careful', name, 'you have moderate obesity!')
+                elif imc >= 39:
+                    print('\n Seek help', name, 'you have morbid obesity!')
+
+screen = WindowScreen()
+screen.Start()
