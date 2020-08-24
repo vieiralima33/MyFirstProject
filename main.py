@@ -7,7 +7,7 @@ class WindowScreen():
         layout = [
             [sg.Text('\n Name', size=(11,0)), sg.Input(size=(18,0), key='name')],
             [sg.Text('\nWeight[Kg]', size=(11,0)), sg.Input(size=(18,0), key='weight')],
-            [sg.Text('\nHeight[M]', size=(11,0)), sg.Input(size=(18,0), key='height')],
+            [sg.Text('\nHeight[cm]', size=(11,0)), sg.Input(size=(18,0), key='height')],
             [sg.Text('\n Gender')],
             [sg.Radio('Male', 'gender', size=(7,0), key='male'), sg.Radio('Female', 'gender', size=(7,0), key='female')],
             [sg.Button('Calculate')],
@@ -22,10 +22,10 @@ class WindowScreen():
             self.button, self.values = self.window.Read()
             name = str(self.values['name'])
             weight = int(self.values['weight'])
-            height = float(self.values['height'])
+            height = int(self.values['height'])
             gmale = self.values['male']
             gfemale = self.values['female']
-            imc = weight / height**2
+            imc = weight * 10000 / height**2
 
             if gmale == True:
                 print ('Your Body Mass Index is: ', round(imc,2))
