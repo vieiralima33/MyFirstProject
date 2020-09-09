@@ -52,6 +52,12 @@ class WindowScreen():
                     print('\n Be careful', name, 'you have moderate obesity!')
                 elif imc >= 39:
                     print('\n Seek help', name, 'you have morbid obesity!')
-
+            try:
+                height
+                weight
+            except ValueError:
+                print('Invalid caractere, try again with numbers..')
+            finally:
+                screen.Start()
 screen = WindowScreen()
 screen.Start()
