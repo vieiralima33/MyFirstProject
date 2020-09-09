@@ -5,6 +5,6 @@
 
 ### Some Screenshots
 Made with Visual Studio Code IDE<br>
-<img src="code.jpg" width="580" height="370" >
+<img src="img/code.jpg" width="580" height="370" >
 <br>Different results between men and women based on the body mass index table<br>
-<img src="window.jpg" width="580" height="370" >
+<img src="img/window.jpg" width="580" height="370" >
