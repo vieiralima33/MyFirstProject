@@ -1,16 +1,29 @@
 import PySimpleGUI as sg
+sg.theme('Dark2')
 
+def front():
+    flayout = [
+        [sg.Text('Welcome')],
+        [sg.Text('Click Start, enter your weight in kilograms, your height in centimeters')],
+        [sg.Text('And select your gender to calculate your body mass index')],
+        [sg.Button('Start')]
+    ]
+    window = sg.Window('Welcome', flayout, size=(440,140), element_justification='center')
+    button, values = window.read()
+
+    if button == 'Start':
+        window.close()
+front()
 class Main():
     def __init__(self):
-        sg.theme('Dark2')
 
         layout = [
-            [sg.Text('\n Name', size=(11,0)), sg.InputText('', size=(18,0), key='name')],
-            [sg.Text('\nWeight(Kg)', size=(11,0)), sg.Input('', size=(18,0), key='weight')],
-            [sg.Text('\nHeight(cm)', size=(11,0)), sg.Input('', size=(18,0), key='height')],
+            [sg.Text('\n Name', size=(11,0)), sg.InputText('', size=(22,0), key='name')],
+            [sg.Text('\nWeight(Kg)', size=(11,0)), sg.Input('', size=(22,0), key='weight')],
+            [sg.Text('\nHeight(cm)', size=(11,0)), sg.Input('', size=(22,0), key='height')],
             [sg.Radio('Male', 'gender', size=(7,0), key='male'), sg.Radio('Female', 'gender', size=(7,0), key='female')],
             [sg.Text('\n')],             
-            [sg.Button('Calculate')],
+            [sg.Button('Calculate'), sg.Button('Exit')],
             [sg.Output(size=(38,5))],
         ]
 
@@ -20,6 +33,8 @@ class Main():
         while True:
             self.button, self.values = self.window.Read()
             name = str(self.values['name'])
+            if self.button == 'Exit':
+                self.window.close()  
             try:
                 weight = int(self.values['weight'])
                 height = int(self.values['height'])
