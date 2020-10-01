@@ -4,14 +4,15 @@ sg.theme('Dark2')
 def front():
     flayout = [
         [sg.Text('Welcome')],
-        [sg.Text('Click Start, enter your weight in kilograms, your height in centimeters')],
-        [sg.Text('And select your gender to calculate your body mass index')],
-        [sg.Button('Start')]
-    ]
+        [sg.Text('Choose your language')],
+        [sg.Button('Portuguese'), sg.Button('English')]
+        ]
     window = sg.Window('Welcome', flayout, size=(440,140), element_justification='center')
     button, values = window.read()
-
-    if button == 'Start':
+    if button == 'Portuguese':
+        window.close()
+        import portuguese
+    if button == 'English':
         window.close()
 front()
 class Main():
