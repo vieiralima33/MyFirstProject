@@ -1,9 +1,8 @@
 import PySimpleGUI as sg
-sg.theme('Dark2')
 
+sg.theme('Dark2')
 class Indice():
     def __init__(self):
-
         layout = [
             [sg.Text('\n Nome', size=(11,0)), sg.InputText('', size=(22,0), key='nome')],
             [sg.Text('\nPeso(Kg)', size=(11,0)), sg.Input('', size=(22,0), key='peso')],
